@@ -45,7 +45,7 @@ export default function MarqueeButton() {
   };
 
   return (
-    <div href="" className={styles.main}>
+    <div className={styles.main}>
       <div ref={slider} className={styles.slider}>
         <p ref={firstText}>View Details -</p>
         <p ref={secondText}>View Details -</p>
