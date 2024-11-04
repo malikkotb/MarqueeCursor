@@ -41,7 +41,7 @@ export default function MarqueeButton() {
     gsap.set(secondText.current, { xPercent: xPercent });
 
     requestAnimationFrame(animate);
-    xPercent -= 0.7; // Adjust the speed by changing the decrement value
+    xPercent -= 0.3; // Adjust the speed by changing the decrement value
   };
 
   return (
