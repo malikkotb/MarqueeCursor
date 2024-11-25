@@ -1,4 +1,4 @@
-import MarqueeButton from "@/components/MarqueeButton/MarqueeCursor";
+import MarqueeButton from "@/components/MarqueeButton/MarqueeButton";
 
 export default function Home() {
   return (

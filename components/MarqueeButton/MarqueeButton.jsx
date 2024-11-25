@@ -49,6 +49,10 @@ export default function MarqueeButton() {
       <div ref={slider} className={styles.slider}>
         <p ref={firstText}>View Details -</p>
         <p ref={secondText}>View Details -</p>
+        {/* 
+        Using CSS: .slider p:nth-of-type(2), we place the second <p> element directly next to the first one, off-screen to the right (left: 100%).
+        This setup makes the two texts act like a single, continuous line of text, allowing the animation to scroll both together smoothly to the left, looping endlessly when they move out of view.
+        */}
       </div>
     </div>
   );
