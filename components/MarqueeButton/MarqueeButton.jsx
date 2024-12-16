@@ -3,7 +3,7 @@ import styles from "./style.module.css";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
-export default function MarqueeButton() {
+export default function MarqueeButton({ direction = "left" }) {
   const firstText = useRef(null);
   const secondText = useRef(null);
   const slider = useRef(null);
@@ -14,22 +14,26 @@ export default function MarqueeButton() {
     gsap.set(secondText.current, {
       left: secondText.current.getBoundingClientRect().width,
     });
-    requestAnimationFrame(animate);
+    if (direction === "right") {
+      requestAnimationFrame(animateRight);
+    } else {
+      requestAnimationFrame(animateLeft);
+    }
   }, []);
 
   //   to animate to the right
-  //   const animate = () => {
-  //     if (xPercent > 0) {
-  //       xPercent = -100;
-  //     }
-  //     gsap.set(firstText.current, { xPercent: xPercent });
-  //     gsap.set(secondText.current, { xPercent: xPercent });
-  //     requestAnimationFrame(animate);
-  //     xPercent += 0.7;
-  //   };
+  const animateRight = () => {
+    if (xPercent > 0) {
+      xPercent = -100;
+    }
+    gsap.set(firstText.current, { xPercent: xPercent });
+    gsap.set(secondText.current, { xPercent: xPercent });
+    requestAnimationFrame(animateRight);
+    xPercent += 0.5;
+  };
 
-  //  to animate to the left
-  const animate = () => {
+  // animate to the left
+  const animateLeft = () => {
     // Reset `xPercent` once it exceeds 100% to create the looping effect
     if (xPercent < -100) {
       xPercent = 0;
@@ -40,8 +44,8 @@ export default function MarqueeButton() {
     // Move second text to the right
     gsap.set(secondText.current, { xPercent: xPercent });
 
-    requestAnimationFrame(animate);
-    xPercent -= 0.3; // Adjust the speed by changing the decrement value
+    requestAnimationFrame(animateLeft);
+    xPercent -= 0.5; // Adjust the speed by changing the decrement value
   };
 
   return (
